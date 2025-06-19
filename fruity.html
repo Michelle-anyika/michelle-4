@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fruit of Love Family</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    header {
+      background: #000;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    header img {
+      max-height: 80px;
+    }
+
+    nav {
+      background: #222;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 0.5rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .hero {
+      background: url("fruit familly image3.jpg") center/cover no-repeat;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      font-size: 2rem;
+      padding: 1rem;
+    }
+
+    .about-section {
+      padding: 4rem 2rem;
+      background-color: #fdfdfd;
+      color: #333;
+      text-align: left;
+    }
+
+    .about-section .container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .about-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #cc3366;
+    }
+
+    .about-section h3 {
+      margin-top: 2rem;
+      color: #444;
+    }
+
+    .about-section p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .activities-section {
+      background-color: #fff8f0;
+      padding: 4rem 2rem;
+      color: #333;
+    }
+
+    .activities-section .container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .activities-section h2 {
+      text-align: center;
+      color: #cc3366;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .activity {
+      margin-bottom: 2.5rem;
+      padding: 1.5rem;
+      background-color: #ffffff;
+      border-left: 5px solid #cc3366;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      border-radius: 8px;
+    }
+
+    .activity h3 {
+      color: #cc3366;
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .activity p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .join-section {
+      padding: 4rem 2rem;
+      background: white;
+      text-align: center;
+    }
+
+    .join-form {
+      margin-top: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .join-form label {
+      font-weight: bold;
+      color: #444;
+      text-align: left;
+    }
+
+    .join-form input {
+      padding: 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    .join-form button {
+      margin-top: 1rem;
+      padding: 1rem;
+      background-color: #cc3366;
+      color: white;
+      border: none;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .join-form button:hover {
+      background-color: #b02c5a;
+    }
+
+    .donate-section {
+      background-color: #f5f5f5;
+      padding: 4rem 2rem;
+      text-align: center;
+      color: #222;
+    }
+
+    .donate-section h2 {
+      color: #cc3366;
+      font-size: 2.5rem;
+    }
+
+    .donate-section p {
+      max-width: 700px;
+      margin: auto;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    .momo-code {
+      font-size: 1.2rem;
+      color: #333;
+      background-color: #fff3f7;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    .donate-form {
+      margin-top: 2rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .donate-form input {
+      padding: 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    .donate-form button {
+      padding: 1rem;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .donate-form button:hover {
+      background-color: #218838;
+    }
+
+    #meet-our-team {
+      padding: 40px;
+      background-color: #f9f9f9;
+      text-align: center;
+    }
+
+    #meet-our-team h2 {
+      margin-bottom: 30px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: 700;
+      color: #333;
+    }
+
+    .team-container {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .team-member {
+      background: white;
+      max-width: 250px;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .team-member:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .team-member img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+
+    .team-member h3 {
+      margin: 0 0 10px;
+      color: #222;
+    }
+
+    .team-member p {
+      margin: 5px 0;
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    .team-member a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+
+    .team-member a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      background: #000;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="logo.jpg" alt="Fruit of Love Logo">
+    <h1>Fruits of Love Family</h1>
+    <p><em>"Sow love, leap smile"</em></p>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#about">About</a>
+    <a href="#activities">Activities</a>
+    <a href="#join">Join</a>
+    <a href="#donate">Donate</a>
+    <a href="#meet-our-team">Contact</a>
+  </nav>
+
+  <section class="hero">
+    <div>
+      💖 Welcome to Fruits of Love Family 💖
+    </div>
+  </section> 
+
+  <section id="about" class="about-section">
+    <div class="container">
+      <h2>About Fruits of Love Family</h2>
+      <p>
+        <strong>Fruits of Love Family</strong> is a passionate team of over 75 members, founded in Rwanda 🇷🇼.
+        Our journey began in high school at <strong>CJSM (Centre de Jeunes Sourds Muets)</strong> in Huye District, Ngoma Sector — also known as Saint Gabriel School.
+        We started small, with less than 10 members, and a big heart focused on helping deaf children from very poor families who couldn’t afford basic school materials or take care of themselves.
+      </p>
+      <h3>Our Mission</h3>
+      <p>
+        We aim to contribute to the social development of Rwanda and protect human life, especially by ensuring the good health and future of children.
+        We help poor mothers in hospitals, support street children, and assist families living in extreme poverty. We believe that those who feel the pain of poverty and hunger can join us to lift others from that under-margin line of life.
+      </p>
+      <h3>Our Vision</h3>
+      <p>
+        Our dream is to see all street children off the streets — safe, in homes, and in school. We want to build a better future for the next generation, free from drugs and alcohol.
+        We aim to ensure that every Rwandan child has access to safety, education, and opportunity.
+      </p>
+    </div>
+  </section>
+
+  <section id="activities" class="activities-section">
+    <div class="container">
+      <h2>Our Activities</h2>
+      <div class="activity">
+        <h3>👶 Helping Poor Children</h3>
+        <p>We support children under 18 from poor families by providing food, clothes, and hygiene items.</p>
+      </div>
+      <div class="activity">
+        <h3>🏥 Supporting Mothers in Hospitals</h3>
+        <p>We visit hospitals to help struggling mothers with food, baby items, and sometimes hospital bills.</p>
+      </div>
+      <div class="activity">
+        <h3>🏠 Finding Homes for Street Kids</h3>
+        <p>We rent homes for kids on the street and help them settle into a safe environment.</p>
+      </div>
+      <div class="activity">
+        <h3>📚 Helping with School Materials</h3>
+        <p>We provide school materials like books, pens, and uniforms for poor students.</p>
+      </div>
+      <div class="activity">
+        <h3>💼 Connecting People to Jobs</h3>
+        <p>We help unemployed parents and older youth find jobs to support their families.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="join" class="join-section">
+    <div class="container">
+      <h2>Join the Family</h2>
+      <p>Are you passionate about helping children and the vulnerable? Fill the form below and become part of our mission. We will contact you shortly 💖</p>
+      <form class="join-form">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        <label for="phone">Phone / WhatsApp</label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+        <button type="submit">Submit & Join 📬</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="donate" class="donate-section">
+    <div class="container">
+      <h2>Support Our Mission 💝</h2>
+      <p>Every small act of love makes a big difference. You can support our work through the MoMo code below. After donating, kindly leave your email so we can send you a thank you and updates on how your donation is used.</p>
+      <div class="donation-info">
+        <p><strong>MoMo Code (MTN Rwanda):</strong> <span class="momo-code">*182*1*1# — 0781723010</span></p>
+      </div>
+      <form class="donate-form" onsubmit="showThankYou(event)">
+        <label for="donor-email">Your Email</label>
+        <input type="email" id="donor-email" name="donor-email" placeholder="Enter your email" required>
+        <button type="submit">I Have Donated ❤️</button>
+      </form>
+      <div id="thank-you-message" style="display:none; margin-top: 1rem; color: green; font-weight: bold;">
+        💖 Thank you so much for your kind heart! We’ll contact you monthly to share how your gift helped a child.
+      </div>
+    </div>
+  </section>
+
+  <section id="meet-our-team">
+    <h2>Meet Our Leaders</h2>
+    <div class="team-container">
+      <div class="team-member">
+        <img src="clement_1.jpg" alt="Clement Niyonkuru">
+        <h3>Clement Niyonkuru</h3>
+        <p><a href="mailto:niyonkuruclement@gmail.com">niyonkuruclement@gmail.com</a></p>
+        <p><strong>Role:</strong> Founder and President</p>
+        <p>Leads the family with passion and ensures our mission stays strong.</p>
+      </div>
+      <div class="team-member">
+        <img src="eric_2.jpg" alt="Eric Gasigwa">
+        <h3>Eric Gasigwa</h3>
+        <p><a href="mailto:ericgasigwa@gmail.com">ericgasigwa@gmail.com</a></p>
+        <p><strong>Role:</strong> Operations Manager</p>
+        <p>Manages daily operations and keeps the family running smoothly.</p>
+      </div>
+      <div class="team-member">
+        <img src="anyika_3.jpg" alt="Anyika Michelle">
+        <h3>Anyika Michelle</h3>
+        <p><a href="mailto:anyikamichelle4@gmail.com">anyikamichelle4@gmail.com</a></p>
+        <p><strong>Role:</strong> Media & Communications</p>
+        <p>Ensures our story is heard and shared with love across platforms.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Contact us:</p>
+    <p>Email: <a href="mailto:thefruitoflovefamily@gmail.com">thefruitoflovefamily@gmail.com</a></p>
+    <p>Phone: <br>
+      +250795450568 <br>
+      +250781723010 <br>
+      +250791220410
+    </p>
+    <p>Follow us: 
+      <a href="https://www.instagram.com/the_fruit_of_love_family_1/" target="_blank">Instagram</a> | 
+      <a href="https://www.tiktok.com/@fruits_of_love?lang=en" target="_blank">TikTok</a>
+    </p>
+    <p>&copy; 2023 Fruits of Love. All Rights Reserved.</p>
+    <p><a href="#">Back to top</a></p>
+  </footer>
+
+  <script>
+    function showThankYou(event) {
+      event.preventDefault();
+      document.getElementById('thank-you-message').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
