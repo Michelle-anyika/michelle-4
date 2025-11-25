@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Fruits of Love Family</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+
+    .logout-btn {
+      background: #cc3366;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .dashboard-content {
+      padding: clamp(1rem, 3vw, 2rem);
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section {
+      display: none;
+      background: white;
+      padding: clamp(1rem, 3vw, 2rem);
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .section h2 {
+      color: #cc3366;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #cc3366;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .data-table tr:hover {
+      background: #f8f9fa;
+    }
+
+    .gallery-upload {
+      border: 2px dashed #cc3366;
+      padding: clamp(1rem, 3vw, 2rem);
+      text-align: center;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .gallery-preview {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .preview-item {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .preview-item img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+    }
+
+    .preview-item .delete-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+    }
+    
+    @media (max-width: 768px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .gallery-preview {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      }
+      
+      .btn {
+        margin-bottom: 0.5rem;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-header">
+    <h1>🏠 Admin Dashboard - Fruits of Love Family</h1>
+    <a href="admin.html" class="logout-btn" onclick="logout()">Logout</a>
+  </div>
+
+  <nav class="dashboard-nav">
+    <button class="nav-btn active" onclick="showSection('overview')">📊 Overview</button>
+    <button class="nav-btn" onclick="showSection('news')">📰 News</button>
+    <button class="nav-btn" onclick="showSection('gallery')">📸 Gallery</button>
+    <button class="nav-btn" onclick="showSection('members')">👥 Members</button>
+    <button class="nav-btn" onclick="showSection('donations')">💰 Donations</button>
+    <button class="nav-btn" onclick="showSection('activities')">📋 Activities</button>
+    <button class="nav-btn" onclick="showSection('contacts')">📧 Messages</button>
+  </nav>
+
+  <div class="dashboard-content">
+    <!-- Overview Section -->
+    <div id="overview" class="section active">
+      <h2>Dashboard Overview</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">92</div>
+          <div class="stat-label">Total Members</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">156</div>
+          <div class="stat-label">Children Helped</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">45</div>
+          <div class="stat-label">Active Volunteers</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">RWF 2.5M</div>
+          <div class="stat-label">Total Donations</div>
+        </div>
+      </div>
+      
+      <h3>Recent Activities</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Activity</th>
+            <th>Beneficiaries</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Dec 15, 2024</td>
+            <td>School Materials Distribution</td>
+            <td>50 children</td>
+            <td>✅ Completed</td>
+          </tr>
+          <tr>
+            <td>Dec 10, 2024</td>
+            <td>Hospital Support</td>
+            <td>25 mothers</td>
+            <td>✅ Completed</td>
+          </tr>
+          <tr>
+            <td>Dec 5, 2024</td>
+            <td>New Member Orientation</td>
+            <td>15 volunteers</td>
+            <td>✅ Completed</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- News Management Section -->
+    <div id="news" class="section">
+      <h2>News & Updates Management</h2>
+      
+      <form onsubmit="addNews(event)">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="newsTitle">News Title</label>
+            <input type="text" id="newsTitle" required>
+          </div>
+          <div class="form-group">
+            <label for="newsDate">Date</label>
+            <input type="date" id="newsDate" required>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="newsContent">Content</label>
+          <textarea id="newsContent" placeholder="Write the news content..." required></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="newsTags">Tags (comma separated)</label>
+          <input type="text" id="newsTags" placeholder="e.g., Education, Success Story">
+        </div>
+        
+        <button type="submit" class="btn">Publish News</button>
+        <button type="button" class="btn btn-secondary">Save Draft</button>
+      </form>
+
+      <h3>Published News</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Title</th>
+            <th>Tags</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="newsTable">
+          <tr>
+            <td>Dec 15, 2024</td>
+            <td>Successfully Provided School Materials to 50 Children</td>
+            <td>Education, Success Story</td>
+            <td>
+              <button class="btn btn-secondary">Edit</button>
+              <button class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Gallery Management Section -->
+    <div id="gallery" class="section">
+      <h2>Gallery Management</h2>
+      
+      <div class="gallery-upload">
+        <h3>Upload New Media</h3>
+        <input type="file" id="mediaUpload" multiple accept="image/*,video/*" onchange="previewMedia(event)">
+        <p>Drag and drop files here or click to browse</p>
+      </div>
+      
+      <div class="form-group">
+        <label for="mediaDescription">Description</label>
+        <input type="text" id="mediaDescription" placeholder="Describe this photo/video...">
+      </div>
+      
+      <div class="form-group">
+        <label for="mediaCategory">Category</label>
+        <select id="mediaCategory">
+          <option value="photos">Photos</option>
+          <option value="videos">Videos</option>
+        </select>
+      </div>
+      
+      <button class="btn" onclick="uploadMedia()">Upload Media</button>
+      
+      <div class="gallery-preview" id="galleryPreview">
+        <!-- Preview items will be added here -->
+      </div>
+    </div>
+
+    <!-- Members Management Section -->
+    <div id="members" class="section">
+      <h2>Members Management</h2>
+      
+      <form onsubmit="addMember(event)">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="memberName">Full Name</label>
+            <input type="text" id="memberName" required>
+          </div>
+          <div class="form-group">
+            <label for="memberEmail">Email</label>
+            <input type="email" id="memberEmail" required>
+          </div>
+          <div class="form-group">
+            <label for="memberPhone">Phone</label>
+            <input type="tel" id="memberPhone" required>
+          </div>
+          <div class="form-group">
+            <label for="memberRole">Role</label>
+            <select id="memberRole">
+              <option value="volunteer">Volunteer</option>
+              <option value="coordinator">Coordinator</option>
+              <option value="leader">Leader</option>
+            </select>
+          </div>
+        </div>
+        
+        <button type="submit" class="btn">Add Member</button>
+      </form>
+
+      <h3>All Members</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Role</th>
+            <th>Join Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="membersTable">
+          <tr>
+            <td>Clement Niyonkuru</td>
+            <td>niyonkuruclement@gmail.com</td>
+            <td>+250781723010</td>
+            <td>Leader</td>
+            <td>Jan 2020</td>
+            <td>
+              <button class="btn btn-secondary">Edit</button>
+              <button class="btn btn-danger">Remove</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Donations Management Section -->
+    <div id="donations" class="section">
+      <h2>Donations Management</h2>
+      
+      <form onsubmit="recordDonation(event)">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="donorName">Donor Name</label>
+            <input type="text" id="donorName">
+          </div>
+          <div class="form-group">
+            <label for="donationAmount">Amount (RWF)</label>
+            <input type="number" id="donationAmount" required>
+          </div>
+          <div class="form-group">
+            <label for="donationDate">Date</label>
+            <input type="date" id="donationDate" required>
+          </div>
+          <div class="form-group">
+            <label for="donationType">Type</label>
+            <select id="donationType">
+              <option value="money">Money</option>
+              <option value="materials">Materials</option>
+              <option value="food">Food</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="donationNotes">Notes</label>
+          <textarea id="donationNotes" placeholder="Additional notes..."></textarea>
+        </div>
+        
+        <button type="submit" class="btn">Record Donation</button>
+      </form>
+
+      <h3>Recent Donations</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Donor</th>
+            <th>Amount</th>
+            <th>Type</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="donationsTable">
+          <tr>
+            <td>Dec 14, 2024</td>
+            <td>Anonymous</td>
+            <td>RWF 50,000</td>
+            <td>Money</td>
+            <td>
+              <button class="btn btn-secondary">View</button>
+              <button class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Activities Management Section -->
+    <div id="activities" class="section">
+      <h2>Activities Management</h2>
+      
+      <form onsubmit="addActivity(event)">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="activityTitle">Activity Title</label>
+            <input type="text" id="activityTitle" required>
+          </div>
+          <div class="form-group">
+            <label for="activityDate">Date</label>
+            <input type="date" id="activityDate" required>
+          </div>
+          <div class="form-group">
+            <label for="activityLocation">Location</label>
+            <input type="text" id="activityLocation" required>
+          </div>
+          <div class="form-group">
+            <label for="activityBeneficiaries">Number of Beneficiaries</label>
+            <input type="number" id="activityBeneficiaries" required>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="activityDescription">Description</label>
+          <textarea id="activityDescription" placeholder="Describe the activity..." required></textarea>
+        </div>
+        
+        <button type="submit" class="btn">Add Activity</button>
+      </form>
+
+      <h3>Planned Activities</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Activity</th>
+            <th>Location</th>
+            <th>Beneficiaries</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="activitiesTable">
+          <tr>
+            <td>Dec 30, 2024</td>
+            <td>Fundraising Event</td>
+            <td>Huye District</td>
+            <td>Community</td>
+            <td>Planned</td>
+            <td>
+              <button class="btn btn-secondary">Edit</button>
+              <button class="btn btn-danger">Cancel</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Contact Messages Section -->
+    <div id="contacts" class="section">
+      <h2>Contact Messages & Inquiries</h2>
+      
+      <div class="stats-grid" style="margin-bottom: 2rem;">
+        <div class="stat-card">
+          <div class="stat-number">24</div>
+          <div class="stat-label">Unread Messages</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">156</div>
+          <div class="stat-label">Total Messages</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">89</div>
+          <div class="stat-label">Volunteer Inquiries</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">45</div>
+          <div class="stat-label">Help Requests</div>
+        </div>
+      </div>
+
+      <h3>Recent Messages</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Subject</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="contactsTable">
+          <tr>
+            <td>Dec 16, 2024</td>
+            <td>John Doe</td>
+            <td>john@email.com</td>
+            <td>Volunteer Inquiry</td>
+            <td>🔴 Unread</td>
+            <td>
+              <button class="btn btn-secondary">View</button>
+              <button class="btn">Reply</button>
+              <button class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Dec 15, 2024</td>
+            <td>Jane Smith</td>
+            <td>jane@email.com</td>
+            <td>Donation Question</td>
+            <td>✅ Replied</td>
+            <td>
+              <button class="btn btn-secondary">View</button>
+              <button class="btn">Reply</button>
+              <button class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Join Requests</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Skills</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Dec 16, 2024</td>
+            <td>Alice Johnson</td>
+            <td>alice@email.com</td>
+            <td>+250123456789</td>
+            <td>Teaching, Fundraising</td>
+            <td>🔴 New</td>
+            <td>
+              <button class="btn">Approve</button>
+              <button class="btn btn-secondary">Contact</button>
+              <button class="btn btn-danger">Reject</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Donation Notifications</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Email</th>
+            <th>Amount Claimed</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Dec 15, 2024</td>
+            <td>donor@email.com</td>
+            <td>RWF 25,000</td>
+            <td>✅ Confirmed</td>
+            <td>
+              <button class="btn btn-secondary">Send Receipt</button>
+              <button class="btn">Thank You Email</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    // Check if user is logged in
+    if (!localStorage.getItem('adminLoggedIn')) {
+      window.location.href = 'admin.html';
+    }
+
+    function showSection(sectionName) {
+      // Hide all sections
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => section.classList.remove('active'));
+      
+      // Remove active class from all nav buttons
+      const navBtns = document.querySelectorAll('.nav-btn');
+      navBtns.forEach(btn => btn.classList.remove('active'));
+      
+      // Show selected section and activate button
+      document.getElementById(sectionName).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    function logout() {
+      localStorage.removeItem('adminLoggedIn');
+    }
+
+    function addNews(event) {
+      event.preventDefault();
+      alert('News published successfully!');
+      event.target.reset();
+    }
+
+    function addMember(event) {
+      event.preventDefault();
+      alert('Member added successfully!');
+      event.target.reset();
+    }
+
+    function recordDonation(event) {
+      event.preventDefault();
+      alert('Donation recorded successfully!');
+      event.target.reset();
+    }
+
+    function addActivity(event) {
+      event.preventDefault();
+      alert('Activity added successfully!');
+      event.target.reset();
+    }
+
+    function previewMedia(event) {
+      const files = event.target.files;
+      const preview = document.getElementById('galleryPreview');
+      
+      for (let file of files) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const div = document.createElement('div');
+          div.className = 'preview-item';
+          div.innerHTML = `
+            <img src="${e.target.result}" alt="Preview">
+            <button class="delete-btn" onclick="this.parentElement.remove()">×</button>
+          `;
+          preview.appendChild(div);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function uploadMedia() {
+      alert('Media uploaded successfully!');
+      document.getElementById('mediaUpload').value = '';
+      document.getElementById('mediaDescription').value = '';
+    }
+  </script>
+</body>
+</html>

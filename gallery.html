@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery - Fruits of Love Family</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .gallery-hero {
+      background: url("fruit-familly-image3.jpg") center/cover;
+    }
+
+    .gallery-section {
+      padding: 3rem 1rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .gallery-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 0.8rem 1.5rem;
+      background: #fff;
+      border: 2px solid #2196F3;
+      color: #2196F3;
+      cursor: pointer;
+      border-radius: 25px;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    .tab-btn.active, .tab-btn:hover {
+      background: #2196F3;
+      color: white;
+    }
+
+    .gallery-item-info {
+      padding: 1rem;
+    }
+
+    .gallery-item h3 {
+      margin: 0 0 0.5rem;
+      color: #2196F3;
+      font-size: 1.1rem;
+    }
+
+    .gallery-item p {
+      margin: 0;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .video-placeholder {
+      background: #f0f0f0;
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 3rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.jpg" alt="Fruit of Love Logo">
+    <h1>Fruits of Love Family</h1>
+    <p><em>"Sow love, leap smile"</em></p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#activities">Activities</a>
+    <a href="gallery.html" class="active">Gallery</a>
+    <a href="news.html">News</a>
+    <a href="index.html#join">Join</a>
+    <a href="index.html#donate">Donate</a>
+    <a href="index.html#meet-our-team">Contact</a>
+  </nav>
+
+  <section class="gallery-hero">
+    <div>📸 Our Journey in Pictures & Videos 🎥</div>
+  </section>
+
+  <section class="gallery-section">
+    <div class="gallery-tabs">
+      <button class="tab-btn active" onclick="showTab('photos')">📷 Photos</button>
+      <button class="tab-btn" onclick="showTab('videos')">🎬 Videos</button>
+    </div>
+
+    <div id="photos" class="tab-content active">
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="fruit-familly-image3.jpg" alt="Team gathering">
+          <div class="gallery-item-info">
+            <h3>Team Gathering 2024</h3>
+            <p>Our family coming together to plan new activities for helping children in need.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="clement_1.jpg" alt="Helping children">
+          <div class="gallery-item-info">
+            <h3>School Materials Distribution</h3>
+            <p>Providing books, pens, and uniforms to children from poor families.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="eric_2.jpg" alt="Hospital visit">
+          <div class="gallery-item-info">
+            <h3>Hospital Support Visit</h3>
+            <p>Supporting mothers and babies at local hospitals with essential items.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="anyika_3.jpg" alt="Street children help">
+          <div class="gallery-item-info">
+            <h3>Street Children Outreach</h3>
+            <p>Finding safe homes and providing care for children living on the streets.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="logo.jpg" alt="Food distribution">
+          <div class="gallery-item-info">
+            <h3>Food Distribution Day</h3>
+            <p>Providing nutritious meals to families struggling with poverty.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="fruit-familly-image3.jpg" alt="Community event">
+          <div class="gallery-item-info">
+            <h3>Community Awareness Event</h3>
+            <p>Raising awareness about children's rights and community support.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="videos" class="tab-content">
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <div class="video-placeholder">🎥</div>
+          <div class="gallery-item-info">
+            <h3>Our Mission Story</h3>
+            <p>Watch how Fruits of Love Family started and our journey helping vulnerable children.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <div class="video-placeholder">🎬</div>
+          <div class="gallery-item-info">
+            <h3>Children's Testimonials</h3>
+            <p>Hear directly from the children we've helped and their families.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <div class="video-placeholder">📹</div>
+          <div class="gallery-item-info">
+            <h3>Hospital Visit Documentary</h3>
+            <p>Behind the scenes of our hospital support program for struggling mothers.</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <div class="video-placeholder">🎥</div>
+          <div class="gallery-item-info">
+            <h3>Team Activities Highlights</h3>
+            <p>A compilation of our team's daily activities and community outreach programs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Contact us: <a href="mailto:thefruitoflovefamily@gmail.com">thefruitoflovefamily@gmail.com</a></p>
+    <p>Follow us: 
+      <a href="https://www.instagram.com/the_fruit_of_love_family_1/" target="_blank">Instagram</a> | 
+      <a href="https://www.tiktok.com/@fruits_of_love?lang=en" target="_blank">TikTok</a>
+    </p>
+    <p>&copy; 2023 Fruits of Love. All Rights Reserved.</p>
+  </footer>
+
+  <script src="common.js"></script>
+</body>
+</html>
